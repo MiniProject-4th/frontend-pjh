@@ -77,3 +77,19 @@ export const CustomBlackButton = styled(Button)`
     box-shadow: none;
   }
 `;
+
+
+export const CustomBlueButton = styled(Button)`
+  background-color: #1976d2; /* 🔵 파란색 */
+  color: #ffffff;
+  border-radius: 8px;
+  height: 40px;
+  padding: 0 16px;
+  font-weight: 500;
+  box-shadow: none;
+
+  &:hover {
+    background-color: #1565c0; /* hover 시 진한 파랑 */
+    box-shadow: none;
+  }
+`;
