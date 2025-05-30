@@ -1,7 +1,7 @@
 // src/pages/newbook/NewBook.jsx
 import React, { useState } from "react";
 import { Box, TextField, Typography, Button, Radio, RadioGroup, FormControlLabel } from "@mui/material";
-import { StyledContainer, FormLeft, FormRight, CoverBox, ButtonGroup } from "./style";
+import { StyledContainer, FormLeft, FormRight, CoverBox, ButtonGroup, LabelBox ,LabelText,CustomBlackButton} from "./style";
 
 function NewBook() {
   const [form, setForm] = useState({
@@ -29,25 +29,60 @@ function NewBook() {
       <FormLeft>
         <Typography variant="h6">| BOOK SETUP</Typography>
 
-        <TextField label="책 제목" name="title" fullWidth margin="normal" onChange={handleChange} />
-        <TextField label="저자" name="author" fullWidth margin="normal" onChange={handleChange} />
-        <TextField label="책 소개(200자 이내)" name="description" fullWidth multiline rows={4} margin="normal" onChange={handleChange} />
+        <LabelBox>
+          <LabelText>
+            <span className="required">*</span>책 제목
+          </LabelText>
+          <TextField name="title" fullWidth margin="normal" onChange={handleChange} />
+        </LabelBox>
 
-        <Typography sx={{ mt: 2 }}>*책 카테고리</Typography>
-        <RadioGroup name="category" value={form.category} onChange={handleChange}>
-          <FormControlLabel value="문학" control={<Radio />} label="문학" />
-          <FormControlLabel value="경제" control={<Radio />} label="경제" />
-          <FormControlLabel value="자기계발" control={<Radio />} label="자기계발" />
-          <FormControlLabel value="라이프스타일" control={<Radio />} label="라이프스타일" />
-        </RadioGroup>
+        <LabelBox>
+          <LabelText>
+            <span className="required">*</span>저자
+          </LabelText>
+          <TextField name="author" fullWidth margin="normal" onChange={handleChange} />
+        </LabelBox>
 
-        <TextField label="비밀번호(숫자 10자 이내)" name="password" fullWidth margin="normal" onChange={handleChange} />
-        <TextField label="API KEY" name="apiKey" fullWidth margin="normal" onChange={handleChange} />
+        <LabelBox>
+          <LabelText>
+            <span className="required">*</span>책 소개(200자 이내)
+          </LabelText>
+          <TextField name="description" fullWidth multiline rows={4} margin="normal" onChange={handleChange} />
+        </LabelBox>
+
+        <LabelBox>
+          <LabelText>
+            <span className="required">*</span>책 카테고리
+          </LabelText>
+          <RadioGroup name="category" value={form.category} onChange={handleChange}>
+            <FormControlLabel value="문학" control={<Radio />} label="문학" />
+            <FormControlLabel value="경제" control={<Radio />} label="경제" />
+            <FormControlLabel value="자기계발" control={<Radio />} label="자기계발" />
+            <FormControlLabel value="라이프스타일" control={<Radio />} label="라이프스타일" />
+          </RadioGroup>
+        </LabelBox>
+
+        <LabelBox>
+          <LabelText>
+            <span className="required">*</span>비밀번호(숫자 10자 이내)
+          </LabelText>
+          <TextField name="password" fullWidth margin="normal" onChange={handleChange} />
+        </LabelBox>
+
+        <LabelBox>
+          <LabelText>
+            <span className="required">*</span>API KEY
+          </LabelText>
+          <TextField name="apiKey" fullWidth margin="normal" onChange={handleChange} />
+        </LabelBox>
 
         <ButtonGroup>
-          <Button variant="contained">Book Cover Create</Button>
+          <CustomBlackButton variant="contained">Book Cover Create</CustomBlackButton>
         </ButtonGroup>
       </FormLeft>
+
+
+
 
       {/* 오른쪽 책 커버 */}
       <FormRight>
@@ -55,7 +90,7 @@ function NewBook() {
         <CoverBox>
           <Typography color="text.secondary">표지 미리보기</Typography>
         </CoverBox>
-        <Button sx={{ mt: 2 }} variant="contained" onClick={handleSubmit}>
+        <Button sx={{ mt: 5 }} variant="contained" onClick={handleSubmit}>
           Add Book
         </Button>
       </FormRight>

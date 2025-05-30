@@ -1,33 +1,79 @@
 // src/pages/newbook/style.js
-import { styled } from "@mui/system";
+import styled from "styled-components";
+import { Box, Button} from "@mui/material";
 
-export const StyledContainer = styled("div")({
-  display: "flex",
-  justifyContent: "space-between",
-  padding: "2rem",
-});
 
-export const FormLeft = styled("div")({
-  width: "48%",
-});
+export const StyledContainer = styled.div`
+  display: flex;
+  gap: 4rem;
+  justify-content: space-between;
+  padding: 4rem;
+  background-color: white;
+`;
 
-export const FormRight = styled("div")({
-  width: "48%",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-});
+export const FormLeft = styled.div`
+  width: 50%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
 
-export const CoverBox = styled("div")({
-  width: "100%",
-  height: "400px",
-  backgroundColor: "#e0e0e0",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  marginTop: "1rem",
-});
+export const FormRight = styled.div`
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
-export const ButtonGroup = styled("div")({
-  marginTop: "1.5rem",
-});
+export const CoverBox = styled.div`
+  margin-top: 1rem;
+  width: 320px;
+  height: 500px;
+  background-color: #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #777;
+`;
+
+export const ButtonGroup = styled.div`
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+`;
+
+export const LabelBox = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+`;
+
+export const LabelText = styled.span`
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 2px;
+
+  .required {
+    color: #1976d2; /* 파란색 */
+    margin-right: 4px;
+  }
+`;
+// style.js
+
+
+export const CustomBlackButton = styled(Button)`
+  background-color: #101010;
+  color: #ffffff;
+  border-radius: 8px;
+  height: 40px;
+  padding: 0 16px;
+  font-weight: 500;
+  box-shadow: none;
+
+  &:hover {
+    background-color: #333333; /* 마우스 오버 시 약간 밝은 회색 */
+    box-shadow: none;
+  }
+`;
