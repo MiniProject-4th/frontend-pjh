@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Main } from "./pages/main/Main";
 import Roots from "./pages/Roots";
+import NewBook from "./pages/newbook/NewBook";
+
 
 const router = createBrowserRouter([
   {
@@ -10,6 +12,10 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <Main />,
+      },
+      {
+        path: "books/new",
+        element: <NewBook />,
       },
     ],
   },

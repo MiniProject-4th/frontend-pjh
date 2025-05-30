@@ -14,27 +14,19 @@ import {
   ThemeProvider as MUIThemeProvider,
 } from "@mui/material";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NewBook from "./pages/newbook/NewBook.jsx";
 
 function App() {
   const theme = useMemo(() => responsiveFontSizes(createTheme(BDS)));
-  // return (
-  //   <div className="App">
-  //     <MUIThemeProvider theme={theme}>
-  //       <StyledThemeProvider theme={theme}>
-  //         <RouterProvider router={router} />
-  //       </StyledThemeProvider>
-  //     </MUIThemeProvider>
-  //   </div>
-  // );
   return (
-    <Router>
-      <Routes>
-        <Route path="/books/new" element={<NewBook />} />
-      </Routes>
-    </Router>
+    <div className="App">
+      <MUIThemeProvider theme={theme}>
+        <StyledThemeProvider theme={theme}>
+          <RouterProvider router={router} />
+        </StyledThemeProvider>
+      </MUIThemeProvider>
+    </div>
   );
-}
-
+};
 export default App;
