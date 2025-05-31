@@ -26,7 +26,7 @@ function NewBook() {
     axios.post('http://localhost:8080/api/books', form)
     .then((response) => {
       console.log("서버 응답:", response.data);
-      alert("책이 성공적으로 등록되었습니다!");
+      alert("책이 등록되었습니다!");
       navigate("/");  // 메인 화면으로 이동
       // 성공 알림이나 폼 초기화 등 처리 가능
     })
@@ -104,7 +104,7 @@ function NewBook() {
         <CoverBox>
           <Typography color="text.secondary">표지 미리보기</Typography>
         </CoverBox>
-        <Button sx={{ mt: 5 }} variant="contained" onClick={handleSubmit}>
+        <Button sx={{ mt: 5,alignSelf: "flex-end" }} variant="contained" onClick={handleSubmit}>
           Add Book
         </Button>
       </FormRight>

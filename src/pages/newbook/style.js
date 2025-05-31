@@ -40,7 +40,7 @@ export const CoverBox = styled.div`
 export const ButtonGroup = styled.div`
   margin-top: 1.5rem;
   display: flex;
-  justify-content: center;
+  justify-content: right;
 `;
 
 export const LabelBox = styled(Box)`

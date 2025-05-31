@@ -20,14 +20,14 @@ const blueTheme = createTheme({
 });
 
 function Edit() {
-  const { bookid } = useParams(); // ✅ useParams에서 정확한 이름으로 추출
+  const { bookid } = useParams(); 
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
     title: "",
     author: "",
     description: "",
-    categoryId: 1,
+    categoryId: "1",
     password: "",
   });
 
@@ -41,7 +41,7 @@ function Edit() {
           title: book.title,
           author: book.author,
           description: book.content,
-          categoryId: String(book.categoryId), // ✅ categoryNameToId 필요 없음
+          categoryId: String(book.categoryId), 
           password: "", // 직접 입력해야 하므로 초기화
         });
       })
@@ -66,7 +66,7 @@ function Edit() {
       password: form.password,
     })
       .then((res) => {
-        alert("도서 정보가 성공적으로 수정되었습니다.");
+        alert("도서 정보가 수정되었습니다.");
         navigate("/"); // 수정 완료 후 메인으로 이동
       })
       .catch((err) => {
@@ -153,7 +153,7 @@ function Edit() {
           <CoverBox>
             <Typography color="text.secondary">표지 미리보기</Typography>
           </CoverBox>
-          <Button sx={{ mt: 5 }} variant="contained" onClick={handleSubmit}>
+          <Button sx={{ mt: 5, alignSelf: "flex-end" }} variant="contained" onClick={handleSubmit}>
             Update Book
           </Button>
         </FormRight>
