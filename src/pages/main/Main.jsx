@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Card from "../../components/common/Card";
 import CategoryList from "../../components/common/CategoryList";
+import axios from "axios";
+
 const books = [
   {
     id: 1,
@@ -79,9 +81,22 @@ const books = [
 
 export const Main = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [bookList, setBookList] = useState([]);
+  const fetchBookData = async () => {
+    const data = await axios
+      .get(import.meta.env.VITE_API_URL + "/api/books")
+      .then((response) => {
+        console.log(response.data);
+        setBookList(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   useEffect(() => {
     // console.log(selectedCategory);
-  }, []);
+    fetchBookData();
+  }, [selectedCategory]);
   return (
     <Container>
       <CategoryList
@@ -89,10 +104,10 @@ export const Main = () => {
         setSelectedCategory={setSelectedCategory}
       />
       <CardList>
-        {books
+        {bookList
           .filter(
             (item) =>
-              selectedCategory == null || item.category === selectedCategory
+              selectedCategory == null || item.categoryName === selectedCategory
           )
           .map((book) => {
             return (

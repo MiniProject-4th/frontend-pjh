@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { styled, css } from "styled-components";
+import axios from "axios";
 
 const categories = [
   { key: "literature", name: "문학" },
@@ -9,6 +10,23 @@ const categories = [
 ];
 
 const CategoryList = ({ selectedCategory, setSelectedCategory }) => {
+  const [categoryList, setCategoryList] = useState([]);
+  const fetchCategory = async () => {
+    const data = await axios
+      .get(import.meta.env.VITE_API_URL + "/api/categories")
+      .then((response) => {
+        // console.log(response.data);
+        setCategoryList(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        setCategoryList([]);
+      });
+  };
+  useEffect(() => {
+    // console.log(selectedCategory);
+    fetchCategory();
+  }, [selectedCategory]);
   return (
     <CategoryWrapper>
       {categories.map((category) => (
@@ -27,6 +45,39 @@ const CategoryList = ({ selectedCategory, setSelectedCategory }) => {
           {category.name}
         </Category>
       ))}
+      {/* {categoryList && categoryList.length === 0
+        ? categoryList.map((category) => (
+            <Category
+              key={category.key}
+              id={category.name}
+              $selectedCategory={selectedCategory}
+              onClick={() => {
+                if (selectedCategory === category.name) {
+                  setSelectedCategory(null);
+                } else {
+                  setSelectedCategory(category.name);
+                }
+              }}
+            >
+              {category.name}
+            </Category>
+          ))
+        : categories.map((category) => (
+            <Category
+              key={category.key}
+              id={category.name}
+              $selectedCategory={selectedCategory}
+              onClick={() => {
+                if (selectedCategory === category.name) {
+                  setSelectedCategory(null);
+                } else {
+                  setSelectedCategory(category.name);
+                }
+              }}
+            >
+              {category.name}
+            </Category>
+          ))} */}
     </CategoryWrapper>
   );
 };
@@ -55,6 +106,6 @@ const Category = styled.div`
     props.$selectedCategory === props.id &&
     css`
       font-weight: 900;
-      color: green;
+      color: "#101010";
     `}
 `;
