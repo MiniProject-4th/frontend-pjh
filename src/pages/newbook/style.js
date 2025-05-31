@@ -28,7 +28,7 @@ export const FormRight = styled.div`
 
 export const CoverBox = styled.div`
   margin-top: 1rem;
-  width: 320px;
+  width: 400px;
   height: 500px;
   background-color: #d9d9d9;
   display: flex;

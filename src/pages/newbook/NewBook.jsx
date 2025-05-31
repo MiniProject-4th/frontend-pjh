@@ -1,9 +1,11 @@
 // src/pages/newbook/NewBook.jsx
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Box, TextField, Typography, Button, Radio, RadioGroup, FormControlLabel } from "@mui/material";
 import { StyledContainer, FormLeft, FormRight, CoverBox, ButtonGroup, LabelBox ,LabelText,CustomBlackButton} from "./style";
 import axios from "axios";
 function NewBook() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     title: "",
     author: "",
@@ -24,10 +26,13 @@ function NewBook() {
     axios.post('http://localhost:8080/api/books', form)
     .then((response) => {
       console.log("서버 응답:", response.data);
+      alert("책이 성공적으로 등록되었습니다!");
+      navigate("/");  // 메인 화면으로 이동
       // 성공 알림이나 폼 초기화 등 처리 가능
     })
     .catch((error) => {
       console.error("요청 실패:", error);
+      alert("등록에 실패했습니다.");
       // 오류 처리 (예: 사용자에게 알림)
     });
   };
