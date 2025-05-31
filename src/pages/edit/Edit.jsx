@@ -154,7 +154,7 @@ function Edit() {
             <Typography color="text.secondary">표지 미리보기</Typography>
           </CoverBox>
           <Button sx={{ mt: 5, alignSelf: "flex-end" }} variant="contained" onClick={handleSubmit}>
-            Update Book
+            Edit
           </Button>
         </FormRight>
       </StyledContainer>
