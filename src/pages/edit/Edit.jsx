@@ -10,7 +10,6 @@ import {
 } from "./style";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
-// MUI 파란색 테마
 const blueTheme = createTheme({
   palette: {
     primary: {
@@ -20,54 +19,74 @@ const blueTheme = createTheme({
 });
 
 function Edit() {
-  const { bookid } = useParams(); 
+  const { bookid } = useParams();
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
     title: "",
     author: "",
-    description: "",
+    content: "",
     categoryId: "1",
     password: "",
+    apiKey: "",
+    coverImgUrl: "",
   });
 
-  useEffect(() => {
-    console.log("Edit 페이지에서 받은 ID:", bookid);
+  const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
     axios.get(`http://localhost:8080/api/books/${bookid}`)
       .then((res) => {
         const book = res.data;
-        setForm({
+        setForm(prev => ({
+          ...prev,
           title: book.title,
           author: book.author,
-          description: book.content,
-          categoryId: String(book.categoryId), 
-          password: "", // 직접 입력해야 하므로 초기화
-        });
+          content: book.content,
+          categoryId: String(book.categoryId),
+          coverImgUrl: book.coverImgUrl || "",
+        }));
       })
       .catch((err) => {
         console.error("책 정보 로딩 실패:", err);
+        alert("책 정보를 불러오지 못했습니다.");
       });
   }, [bookid]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+    setForm(prev => ({ ...prev, [name]: value }));
+  };
+
+  const generateCover = () => {
+    setLoading(true);
+    axios.post("http://localhost:8080/api/books/generate-cover", {
+      title: form.title,
+      content: form.content,
+      apiKey: form.apiKey,
+    })
+    .then(res => {
+      setForm(prev => ({ ...prev, coverImgUrl: res.data.imageUrl }));
+    })
+    .catch(err => {
+      console.error("이미지 생성 실패:", err);
+      alert("이미지 생성에 실패했습니다.");
+    })
+    .finally(() => setLoading(false));
   };
 
   const handleSubmit = () => {
-    console.log("제출된 데이터:", form);
-
     axios.patch(`http://localhost:8080/api/books/${bookid}`, {
       title: form.title,
       author: form.author,
-      content: form.description,
+      content: form.content,
       categoryId: form.categoryId,
       password: form.password,
+      coverImgUrl: form.coverImgUrl,
     })
-      .then((res) => {
+      .then(() => {
         alert("도서 정보가 수정되었습니다.");
-        navigate("/"); // 수정 완료 후 메인으로 이동
+        navigate("/");
       })
       .catch((err) => {
         console.error("수정 요청 실패:", err);
@@ -78,52 +97,27 @@ function Edit() {
   return (
     <ThemeProvider theme={blueTheme}>
       <StyledContainer>
-        {/* 왼쪽 폼 */}
         <FormLeft>
           <Typography variant="h6">| BOOK SETUP</Typography>
 
           <LabelBox>
             <LabelText><span className="required">*</span>책 제목</LabelText>
-            <TextField
-              name="title"
-              value={form.title}
-              fullWidth
-              margin="normal"
-              onChange={handleChange}
-            />
+            <TextField name="title" value={form.title} fullWidth onChange={handleChange} />
           </LabelBox>
 
           <LabelBox>
             <LabelText><span className="required">*</span>저자</LabelText>
-            <TextField
-              name="author"
-              value={form.author}
-              fullWidth
-              margin="normal"
-              onChange={handleChange}
-            />
+            <TextField name="author" value={form.author} fullWidth onChange={handleChange} />
           </LabelBox>
 
           <LabelBox>
-            <LabelText><span className="required">*</span>책 소개(200자 이내)</LabelText>
-            <TextField
-              name="description"
-              value={form.description}
-              fullWidth
-              multiline
-              rows={4}
-              margin="normal"
-              onChange={handleChange}
-            />
+            <LabelText><span className="required">*</span>책 소개</LabelText>
+            <TextField name="content" value={form.content} fullWidth multiline rows={4} onChange={handleChange} />
           </LabelBox>
 
           <LabelBox>
             <LabelText><span className="required">*</span>책 카테고리</LabelText>
-            <RadioGroup
-              name="categoryId"
-              value={form.categoryId}
-              onChange={handleChange}
-            >
+            <RadioGroup name="categoryId" value={form.categoryId} onChange={handleChange}>
               <FormControlLabel value="1" control={<Radio />} label="문학" />
               <FormControlLabel value="2" control={<Radio />} label="경제" />
               <FormControlLabel value="3" control={<Radio />} label="자기 계발" />
@@ -132,27 +126,32 @@ function Edit() {
           </LabelBox>
 
           <LabelBox>
-            <LabelText><span className="required">*</span>비밀번호(숫자 10자 이내)</LabelText>
-            <TextField
-              name="password"
-              value={form.password}
-              fullWidth
-              margin="normal"
-              onChange={handleChange}
-            />
+            <LabelText><span className="required">*</span>비밀번호</LabelText>
+            <TextField name="password" value={form.password} fullWidth onChange={handleChange} />
+          </LabelBox>
+
+          <LabelBox>
+            <LabelText><span className="required">*</span>API KEY</LabelText>
+            <TextField name="apiKey" value={form.apiKey} fullWidth onChange={handleChange} />
           </LabelBox>
 
           <ButtonGroup>
-            <Button variant="contained">Book Cover Create</Button>
+            <Button variant="contained" onClick={generateCover} disabled={loading}>
+              {loading ? "Generating..." : "Book Cover Create"}
+            </Button>
           </ButtonGroup>
         </FormLeft>
 
-        {/* 오른쪽 표지 영역 */}
         <FormRight>
           <Typography variant="h6">| BOOK COVER</Typography>
           <CoverBox>
-            <Typography color="text.secondary">표지 미리보기</Typography>
+            {form.coverImgUrl ? (
+              <img src={form.coverImgUrl} alt="표지 미리보기" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            ) : (
+              <Typography color="text.secondary">표지 미리보기 없음</Typography>
+            )}
           </CoverBox>
+
           <Button sx={{ mt: 5, alignSelf: "flex-end" }} variant="contained" onClick={handleSubmit}>
             Edit
           </Button>

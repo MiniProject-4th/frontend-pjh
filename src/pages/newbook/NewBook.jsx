@@ -2,17 +2,21 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, TextField, Typography, Button, Radio, RadioGroup, FormControlLabel } from "@mui/material";
-import { StyledContainer, FormLeft, FormRight, CoverBox, ButtonGroup, LabelBox ,LabelText,CustomBlackButton} from "./style";
+import { StyledContainer, FormLeft, FormRight, CoverBox, ButtonGroup, LabelBox ,LabelText,CustomBlackButton,CoverImage} from "./style";
 import axios from "axios";
 function NewBook() {
+  const [coverImgUrl, setCoverImgUrl] = useState(""); // 생성된 표지 이미지 URL 저장
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false); // 이미지 생성 중인지 여부
+
   const [form, setForm] = useState({
     title: "",
     author: "",
     content: "",
     categoryId: 1,
     password: "",
-    // apiKey: "",
+    coverImgUrl: "",
+    apiKey: "",
   });
 
   const handleChange = (e) => {
@@ -35,6 +39,27 @@ function NewBook() {
       alert("등록에 실패했습니다.");
       // 오류 처리 (예: 사용자에게 알림)
     });
+  };
+  
+  const handleGenerateCover = async () => {
+    setIsLoading(true);
+    try {
+      const response = await axios.post("http://localhost:8080/api/books/generate-cover", {
+        title: form.title,
+        content: form.content,
+        apiKey: form.apiKey,
+      });
+
+      const imageUrl = response.data.imageUrl;
+      setCoverImgUrl(imageUrl); // 미리보기용
+      setForm((prev) => ({ ...prev, coverImgUrl: imageUrl })); // form에도 저장
+
+    } catch (error) {
+      console.error("이미지 생성 실패:", error);
+      alert("책 표지 생성에 실패했습니다.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -91,7 +116,10 @@ function NewBook() {
         </LabelBox>
 
         <ButtonGroup>
-          <CustomBlackButton variant="contained">Book Cover Create</CustomBlackButton>
+          <CustomBlackButton variant="contained" onClick={handleGenerateCover} disabled={isLoading}>
+            {isLoading ? "GENERATING..." : "Book Cover Create"}
+          </CustomBlackButton>
+
         </ButtonGroup>
       </FormLeft>
 
@@ -102,7 +130,11 @@ function NewBook() {
       <FormRight>
         <Typography variant="h6">| BOOK COVER</Typography>
         <CoverBox>
-          <Typography color="text.secondary">표지 미리보기</Typography>
+          {coverImgUrl ? (
+            <CoverImage src={coverImgUrl} alt="책 표지" />
+          ) : (
+            <Typography color="text.secondary">표지 미리보기</Typography>
+          )}
         </CoverBox>
         <Button sx={{ mt: 5,alignSelf: "flex-end" }} variant="contained" onClick={handleSubmit}>
           Add Book

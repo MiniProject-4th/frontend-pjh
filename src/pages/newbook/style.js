@@ -36,6 +36,12 @@ export const CoverBox = styled.div`
   justify-content: center;
   color: #777;
 `;
+export const CoverImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+`;
 
 export const ButtonGroup = styled.div`
   margin-top: 1.5rem;
