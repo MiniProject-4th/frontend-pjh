@@ -62,7 +62,7 @@ function Edit() {
             <RadioGroup name="category" value={form.category} onChange={handleChange}>
               <FormControlLabel value="문학" control={<Radio />} label="문학" />
               <FormControlLabel value="경제" control={<Radio />} label="경제" />
-              <FormControlLabel value="자기계발" control={<Radio />} label="자기계발" />
+              <FormControlLabel value="자기 계발" control={<Radio />} label="자기계발" />
               <FormControlLabel value="라이프스타일" control={<Radio />} label="라이프스타일" />
             </RadioGroup>
           </LabelBox>

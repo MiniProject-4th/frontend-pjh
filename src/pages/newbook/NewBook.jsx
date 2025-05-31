@@ -2,15 +2,15 @@
 import React, { useState } from "react";
 import { Box, TextField, Typography, Button, Radio, RadioGroup, FormControlLabel } from "@mui/material";
 import { StyledContainer, FormLeft, FormRight, CoverBox, ButtonGroup, LabelBox ,LabelText,CustomBlackButton} from "./style";
-
+import axios from "axios";
 function NewBook() {
   const [form, setForm] = useState({
     title: "",
     author: "",
-    description: "",
-    category: "라이프스타일",
+    content: "",
+    categoryId: 1,
     password: "",
-    apiKey: "",
+    // apiKey: "",
   });
 
   const handleChange = (e) => {
@@ -20,7 +20,16 @@ function NewBook() {
 
   const handleSubmit = () => {
     console.log("제출된 데이터:", form);
-    // 추후 axios.post로 전송 예정
+
+    axios.post('http://localhost:8080/api/books', form)
+    .then((response) => {
+      console.log("서버 응답:", response.data);
+      // 성공 알림이나 폼 초기화 등 처리 가능
+    })
+    .catch((error) => {
+      console.error("요청 실패:", error);
+      // 오류 처리 (예: 사용자에게 알림)
+    });
   };
 
   return (
@@ -47,18 +56,18 @@ function NewBook() {
           <LabelText>
             <span className="required">*</span>책 소개(200자 이내)
           </LabelText>
-          <TextField name="description" fullWidth multiline rows={4} margin="normal" onChange={handleChange} />
+          <TextField name="content" fullWidth multiline rows={4} margin="normal" onChange={handleChange} />
         </LabelBox>
 
         <LabelBox>
           <LabelText>
             <span className="required">*</span>책 카테고리
           </LabelText>
-          <RadioGroup name="category" value={form.category} onChange={handleChange}>
-            <FormControlLabel value="문학" control={<Radio />} label="문학" />
-            <FormControlLabel value="경제" control={<Radio />} label="경제" />
-            <FormControlLabel value="자기계발" control={<Radio />} label="자기계발" />
-            <FormControlLabel value="라이프스타일" control={<Radio />} label="라이프스타일" />
+          <RadioGroup name="categoryId" value={form.categoryId} onChange={handleChange}>
+            <FormControlLabel value={1} control={<Radio />} label="문학" />
+            <FormControlLabel value={2} control={<Radio />} label="경제" />
+            <FormControlLabel value={3} control={<Radio />} label="자기 계발" />
+            <FormControlLabel value={4} control={<Radio />} label="라이프스타일" />
           </RadioGroup>
         </LabelBox>
 
