@@ -26,7 +26,7 @@ const BookDetailPage = () => {
     <div
       
       style={{
-        marginTop: "100px",      // ✅ 헤더 아래로 내림
+        marginTop: "100px",      // 헤더 아래로 내림
         marginLeft: "20px",     // 왼쪽 여백
         cursor: "pointer",
         fontWeight: "bold",
