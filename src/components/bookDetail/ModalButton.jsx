@@ -19,7 +19,7 @@ export const ModalButton = ({ type, book }) => {
     const password = passwordRef.current.value;
 
     if (type === "edit") {
-      //  비밀번호 검증 API 요청
+      //  비밀번호 검증 API 요청하는 부분
       axios
         .post(`http://localhost:8080/api/books/${id}/verify-password`, {
           password: password,
