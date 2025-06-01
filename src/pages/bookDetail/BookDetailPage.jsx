@@ -43,7 +43,7 @@ const BookDetailPage = () => {
           fontWeight: "bold",
         }}
       >
-        🏠 홈
+        메인 홈
       </div>
     
     
