@@ -19,7 +19,8 @@ const blueTheme = createTheme({
 });
 
 function Edit() {
-  const { bookid } = useParams();
+  const { id } = useParams();
+  console.log("받아온 id:", id);
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -35,7 +36,7 @@ function Edit() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/books/${bookid}`)
+    axios.get(`http://localhost:8080/api/books/${id}`)
       .then((res) => {
         const book = res.data;
         setForm(prev => ({
@@ -51,7 +52,7 @@ function Edit() {
         console.error("책 정보 로딩 실패:", err);
         alert("책 정보를 불러오지 못했습니다.");
       });
-  }, [bookid]);
+  }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -76,7 +77,7 @@ function Edit() {
   };
 
   const handleSubmit = () => {
-    axios.patch(`http://localhost:8080/api/books/${bookid}`, {
+    axios.patch(`http://localhost:8080/api/books/${id}`, {
       title: form.title,
       author: form.author,
       content: form.content,
