@@ -101,8 +101,12 @@ const BookDetailPage = () => {
         </p>
         <h2 style={{ margin: "0 0 10px" }}>{book.title}</h2>
         <p style={{ marginBottom: "5px" }}>{book.author}</p>
+        
         <p style={{ marginBottom: "20px", color: "#555" }}>
-          {new Date(book.createDate).toLocaleDateString()}
+          등록일: {new Date(book.createDate).toLocaleDateString()}
+        </p>
+        <p style={{ marginBottom: "20px", color: "#555" }}>
+          수정일: {new Date(book.updateDate).toLocaleString()}
         </p>
 
         <h4 style={{ marginTop: "10px" }}>책 줄거리</h4>
