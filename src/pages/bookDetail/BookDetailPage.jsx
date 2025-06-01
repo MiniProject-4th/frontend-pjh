@@ -96,29 +96,36 @@ const BookDetailPage = () => {
         </div>
 
         {/* 정보 출력 */}
-        <p style={{ color: "#888", marginBottom: "8px" }}>
+        <p style={{ color: "#888", marginBottom: "8px", fontSize:"12px" }}>
           {book.categoryName}
         </p>
-        <h2 style={{ margin: "0 0 10px" }}>{book.title}</h2>
-        <p style={{ marginBottom: "5px" }}>{book.author}</p>
+
+        <h3 style={{ margin: "0 0 30px" }}>{book.title}</h3>
         
-        <p style={{ marginBottom: "20px", color: "#555" }}>
+        <div style={{ marginBottom: "20px" }}>
+          <h4 style={{ margin: "0 2px 0", fontSize: "12px", color: "#888" }}>저자</h4>
+          <p style={{ margin: "2px 3px 0", fontWeight: "bold" }}>{book.author}</p>
+        </div>
+
+        <p style={{ marginBottom: "20px", color: "#555" , fontSize:"11px"}}>
           등록일: {new Date(book.createDate).toLocaleDateString()}
-        </p>
-        <p style={{ marginBottom: "20px", color: "#555" }}>
+        <br />
+        {/* <p style={{ marginBottom: "20px", color: "#555" }}> */}
           수정일: {new Date(book.updateDate).toLocaleString()}
         </p>
-
-        <h4 style={{ marginTop: "10px" }}>책 줄거리</h4>
+        
+        <div>
+        <h4 style={{ marginTop: "45px", color:"#888", fontSize: "12px"}}>책 줄거리</h4>
         <p
           style={{
             whiteSpace: "pre-wrap",
             lineHeight: "1.6",
-            marginTop: "10px",
+            fontSize: "15px"
           }}
         >
           {book.content}
         </p>
+        </div>
       </div>
     </div>
     </div>
