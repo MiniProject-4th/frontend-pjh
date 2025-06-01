@@ -32,8 +32,8 @@ const BookDetailPage = () => {
         fontWeight: "bold",
       }}
     >
-      {/* ✅ 홈 버튼 */}
-      <div
+      {/* 홈 버튼 */}
+      <button
         onClick={() => navigate("/")}
         style={{
           position: "absolute",
@@ -43,8 +43,8 @@ const BookDetailPage = () => {
           fontWeight: "bold",
         }}
       >
-        메인 홈
-      </div>
+        홈
+      </button>
     
     
     <div
