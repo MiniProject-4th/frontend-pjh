@@ -65,7 +65,8 @@ const BookDetailPage = () => {
             e.target.src = '/no-image.png';
           }}
           style={{ width: '100%', height: '350px', border: '1px solid #ccc' }}
-        />
+        /> 
+        
       </div>
 
       {/* 오른쪽: 내용 */}
@@ -103,11 +104,11 @@ const BookDetailPage = () => {
         <h3 style={{ margin: "0 0 30px" }}>{book.title}</h3>
         
         <div style={{ marginBottom: "20px" }}>
-          <h4 style={{ margin: "0 2px 0", fontSize: "12px", color: "#888" }}>저자</h4>
-          <p style={{ margin: "2px 3px 0", fontWeight: "bold" }}>{book.author}</p>
+          <h4 style={{ margin: "0 1px 0", fontSize: "12px", color: "#888" }}>저자</h4>
+          <p style={{ margin: "2px 2px 0", fontWeight: "bold", fontSize: "13px" }}>{book.author}</p>
         </div>
 
-        <p style={{ marginBottom: "20px", color: "#555" , fontSize:"11px"}}>
+        <p style={{ marginBottom: "20px", color: "#888" , fontSize:"10px"}}>
           등록일: {new Date(book.createDate).toLocaleDateString()}
         <br />
         {/* <p style={{ marginBottom: "20px", color: "#555" }}> */}
@@ -115,12 +116,12 @@ const BookDetailPage = () => {
         </p>
         
         <div>
-        <h4 style={{ marginTop: "45px", color:"#888", fontSize: "12px"}}>책 줄거리</h4>
+        <h4 style={{ marginTop: "45px", color:"#555", fontSize: "12px"}}>책 줄거리</h4>
         <p
           style={{
             whiteSpace: "pre-wrap",
             lineHeight: "1.6",
-            fontSize: "15px"
+            fontSize: "13px"
           }}
         >
           {book.content}
