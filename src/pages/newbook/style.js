@@ -8,6 +8,7 @@ export const StyledContainer = styled.div`
   gap: 4rem;
   justify-content: space-between;
   padding: 4rem;
+  padding-top: 100px;  
   background-color: white;
 `;
 
