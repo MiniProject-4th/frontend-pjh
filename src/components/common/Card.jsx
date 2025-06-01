@@ -2,18 +2,18 @@
 import React from "react";
 import styled from "styled-components";
 
-const Card = ({ title, author, date, thumbnail, category }) => (
+const Card = ({ book }) => (
   <CardContainer>
     <ThumbnailWrapper>
       <div>
-        <img src={thumbnail} alt={title} />
+        <img src={book.coverImgUrl} alt={book.title} />
       </div>
     </ThumbnailWrapper>
     <Meta>
-      <Category>{category}</Category>
-      <Title>{title}</Title>
-      <Author>{author}</Author>
-      <Date>{date}</Date>
+      <Category>{book.categoryName}</Category>
+      <Title>{book.title}</Title>
+      <Author>{book.author}</Author>
+      <Date>{book.createDate.substring(0, 10)}</Date>
     </Meta>
   </CardContainer>
 );
