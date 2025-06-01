@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Header() {
   return (
     <HeaderContainer>
-      <Link to={"/"}>
+      <Link to="/" onClick={() => location.reload()}>
         <Logo src="/logo/BookLogo.svg" alt="Book Management System" />
       </Link>
       <BookAddButton>+ Add Book</BookAddButton>

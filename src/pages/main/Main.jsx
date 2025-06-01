@@ -4,94 +4,103 @@ import Card from "../../components/common/Card";
 import CategoryList from "../../components/common/CategoryList";
 import axios from "axios";
 
-const books = [
-  {
-    id: 1,
-    title: "코코는 너무 귀여워",
-    author: "콩이",
-    date: "2025.07.07",
-    category: "경제",
-    thumbnail:
-      "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fwww.dog-zzang.co.kr%2Fdog_sale%2Fphoto_free%2F202211%2F1667919973_47756500.jpeg&type=sc960_832",
-  },
-  {
-    id: 2,
-    title: "멍멍이는 사랑",
-    author: "초코",
-    date: "2025.08.01",
-    category: "문학",
-    thumbnail:
-      "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fwww.dog-zzang.co.kr%2Fdog_sale%2Fphoto_free%2F202211%2F1667919973_47756500.jpeg&type=sc960_832",
-  },
-  {
-    id: 3,
-    title: "하루 10분 산책의 기적",
-    author: "코코",
-    date: "2025.09.11",
-    category: "라이프 스타일",
-    thumbnail:
-      "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fwww.dog-zzang.co.kr%2Fdog_sale%2Fphoto_free%2F202211%2F1667919973_47756500.jpeg&type=sc960_832",
-  },
-  {
-    id: 4,
-    title: "하루 10분 산책의 기적",
-    author: "코코",
-    date: "2025.09.11",
-    category: "라이프 스타일",
-    thumbnail:
-      "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fwww.dog-zzang.co.kr%2Fdog_sale%2Fphoto_free%2F202211%2F1667919973_47756500.jpeg&type=sc960_832",
-  },
-  {
-    id: 5,
-    title: "하루 10분 산책의 기적",
-    author: "코코",
-    date: "2025.09.11",
-    category: "라이프 스타일",
-    thumbnail:
-      "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fwww.dog-zzang.co.kr%2Fdog_sale%2Fphoto_free%2F202211%2F1667919973_47756500.jpeg&type=sc960_832",
-  },
-  {
-    id: 6,
-    title: "하루 10분 산책의 기적",
-    author: "코코",
-    date: "2025.09.11",
-    category: "라이프 스타일",
-    thumbnail:
-      "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fwww.dog-zzang.co.kr%2Fdog_sale%2Fphoto_free%2F202211%2F1667919973_47756500.jpeg&type=sc960_832",
-  },
-  {
-    id: 7,
-    title: "하루 10분 산책의 기적",
-    author: "코코",
-    date: "2025.09.11",
-    category: "라이프 스타일",
-    thumbnail:
-      "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fwww.dog-zzang.co.kr%2Fdog_sale%2Fphoto_free%2F202211%2F1667919973_47756500.jpeg&type=sc960_832",
-  },
-  {
-    id: 8,
-    title: "하루 10분 산책의 기적",
-    author: "코코",
-    date: "2025.09.11",
-    category: "라이프 스타일",
-    thumbnail:
-      "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fwww.dog-zzang.co.kr%2Fdog_sale%2Fphoto_free%2F202211%2F1667919973_47756500.jpeg&type=sc960_832",
-  },
-];
+// const books = [
+//   {
+//     id: 1,
+//     title: "코코는 너무 귀여워",
+//     author: "콩이",
+//     date: "2025.07.07",
+//     category: "경제",
+//     thumbnail:
+//       "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fwww.dog-zzang.co.kr%2Fdog_sale%2Fphoto_free%2F202211%2F1667919973_47756500.jpeg&type=sc960_832",
+//   },
+//   {
+//     id: 2,
+//     title: "멍멍이는 사랑",
+//     author: "초코",
+//     date: "2025.08.01",
+//     category: "문학",
+//     thumbnail:
+//       "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fwww.dog-zzang.co.kr%2Fdog_sale%2Fphoto_free%2F202211%2F1667919973_47756500.jpeg&type=sc960_832",
+//   },
+//   {
+//     id: 3,
+//     title: "하루 10분 산책의 기적",
+//     author: "코코",
+//     date: "2025.09.11",
+//     category: "라이프 스타일",
+//     thumbnail:
+//       "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fwww.dog-zzang.co.kr%2Fdog_sale%2Fphoto_free%2F202211%2F1667919973_47756500.jpeg&type=sc960_832",
+//   },
+//   {
+//     id: 4,
+//     title: "하루 10분 산책의 기적",
+//     author: "코코",
+//     date: "2025.09.11",
+//     category: "라이프 스타일",
+//     thumbnail:
+//       "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fwww.dog-zzang.co.kr%2Fdog_sale%2Fphoto_free%2F202211%2F1667919973_47756500.jpeg&type=sc960_832",
+//   },
+//   {
+//     id: 5,
+//     title: "하루 10분 산책의 기적",
+//     author: "코코",
+//     date: "2025.09.11",
+//     category: "라이프 스타일",
+//     thumbnail:
+//       "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fwww.dog-zzang.co.kr%2Fdog_sale%2Fphoto_free%2F202211%2F1667919973_47756500.jpeg&type=sc960_832",
+//   },
+//   {
+//     id: 6,
+//     title: "하루 10분 산책의 기적",
+//     author: "코코",
+//     date: "2025.09.11",
+//     category: "라이프 스타일",
+//     thumbnail:
+//       "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fwww.dog-zzang.co.kr%2Fdog_sale%2Fphoto_free%2F202211%2F1667919973_47756500.jpeg&type=sc960_832",
+//   },
+//   {
+//     id: 7,
+//     title: "하루 10분 산책의 기적",
+//     author: "코코",
+//     date: "2025.09.11",
+//     category: "라이프 스타일",
+//     thumbnail:
+//       "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fwww.dog-zzang.co.kr%2Fdog_sale%2Fphoto_free%2F202211%2F1667919973_47756500.jpeg&type=sc960_832",
+//   },
+//   {
+//     id: 8,
+//     title: "하루 10분 산책의 기적",
+//     author: "코코",
+//     date: "2025.09.11",
+//     category: "라이프 스타일",
+//     thumbnail:
+//       "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fwww.dog-zzang.co.kr%2Fdog_sale%2Fphoto_free%2F202211%2F1667919973_47756500.jpeg&type=sc960_832",
+//   },
+// ];
 
 export const Main = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [bookList, setBookList] = useState([]);
   const fetchBookData = async () => {
-    const data = await axios
-      .get(import.meta.env.VITE_API_URL + "/api/books")
-      .then((response) => {
-        console.log(response.data);
-        setBookList(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    try {
+      let url = import.meta.env.VITE_API_URL;
+
+      // if (selectedCategory !== null) {
+      //   url += `/api/books/category/${selectedCategory}`;
+      // } else {
+      //   url += `/api/books`;
+      // }
+      url += `/api/books`;
+      const response = await axios.get(url);
+      setBookList(response.data);
+    } catch (err) {
+      console.error(
+        "책 데이터를 불러오는 중 오류가 발생했습니다. 다시 시도해 주세요.:",
+        err
+      );
+      setBookList([]);
+    }
   };
   useEffect(() => {
     // console.log(selectedCategory);
@@ -113,12 +122,13 @@ export const Main = () => {
             return (
               <Card
                 key={book.id}
-                id={book.id}
-                title={book.title}
-                author={book.author}
-                date={book.date}
-                category={book.category}
-                thumbnail={book.thumbnail}
+                book={book}
+                // id={book.id}
+                // title={book.title}
+                // author={book.author}
+                // date={book.createDate.substring(0, 10)}
+                // category={book.categoryName}
+                // thumbnail={book.coverImgUrl}
               />
             );
           })}
