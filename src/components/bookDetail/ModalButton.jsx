@@ -1,29 +1,42 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import Snackbar from "@mui/material/Snackbar";
+import axios from "axios";
+import { useParams, useNavigate } from "react-router-dom";
 
 export const ModalButton = ({ type }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const passwordRef = useRef();
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   const handleCheck = () => {
-    // 비밀번호 체크 결과
-    const checkPassword = true;
-
-    // result가 false면 스낵바 보여주기
-    if (!checkPassword) {
-      setSnackbarOpen(true);
+    if (type === "edit") {
+      console.log("수정 페이지로 넘어가야해요");
     } else {
-      if (type === "edit") {
-        console.log("수정 페이지로 넘어가야해요");
-      } else {
-        console.log("백엔드에 삭제 요청을 보내야해요");
-      }
-      setModalOpen(false);
+      const password = passwordRef.current.value;
+
+      axios
+        .delete(`http://localhost:8080/api/books/${id}`, {
+          data: { password },
+        })
+        .then((response) => {
+          console.log("삭제 성공:", response.data);
+          setModalOpen(false); // 삭제 성공 시 모달 닫기
+          navigate("/");
+        })
+        .catch((error) => {
+          if (error.response && error.response.status === 500) {
+            setSnackbarOpen(true); // 비밀번호 오류로 인한 실패만 스낵바
+          } else {
+            console.error("삭제 실패:", error);
+          }
+        });
     }
   };
 
@@ -70,6 +83,7 @@ export const ModalButton = ({ type }) => {
             label="Password"
             variant="outlined"
             color="black"
+            inputRef={passwordRef}
           />
           <br />
           <Button
