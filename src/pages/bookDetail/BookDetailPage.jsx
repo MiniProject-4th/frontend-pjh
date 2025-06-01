@@ -14,7 +14,7 @@ const BookDetailPage = () => {
     axios.get(`http://localhost:8080/api/books/${id}`)
       .then(res => setBook(res.data))
       .catch(err => {
-        console.error("책 정보를 불러오는 데 실패했습니다", err);
+        console.error("책 정보를 불러오는 데 실패했습니다!!", err);
       });
   }, [id]);
 
