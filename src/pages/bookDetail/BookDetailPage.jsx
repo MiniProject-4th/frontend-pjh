@@ -56,7 +56,7 @@ const BookDetailPage = () => {
       }}
     >
       {/* 왼쪽: 표지 */}
-      <div style={{ width: "300px" }}>
+      <div style={{ width: "320px" }}>
         <img
           src={book.coverImgUrl}
           alt="표지"
@@ -64,7 +64,7 @@ const BookDetailPage = () => {
             e.target.onerror = null;
             e.target.src = '/no-image.png';
           }}
-          style={{ width: '100%', height: '350px', border: '1px solid #ccc' }}
+          style={{ width: '100%', height: '480px', border: '1px solid #ccc' }}
         /> 
         
       </div>
