@@ -17,7 +17,7 @@ export const ModalButton = ({ type }) => {
 
   const handleCheck = () => {
     if (type === "edit") {
-      console.log("수정 페이지로 넘어가야해요");
+      navigate(`/books/edit/${id}`);
     } else {
       const password = passwordRef.current.value;
 
