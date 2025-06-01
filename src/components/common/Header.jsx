@@ -1,14 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Header() {
+  const navigate = useNavigate();
   return (
     <HeaderContainer>
-      <Link to="/" onClick={() => location.reload()}>
+      <Link to="/">
         <Logo src="/logo/BookLogo.svg" alt="Book Management System" />
       </Link>
-      <BookAddButton>+ Add Book</BookAddButton>
+      <BookAddButton onClick={() => navigate("/books/new")}>
+        + Add Book
+      </BookAddButton>
     </HeaderContainer>
   );
 }
@@ -56,5 +59,3 @@ const BookAddButton = styled.button`
     outline: none;
   }
 `;
-
-

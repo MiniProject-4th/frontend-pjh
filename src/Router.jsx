@@ -5,7 +5,6 @@ import NewBook from "./pages/newbook/NewBook";
 import Edit from "./pages/edit/Edit";
 import BookDetailPage from "./pages/bookDetail/BookDetailPage";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -19,11 +18,10 @@ const router = createBrowserRouter([
         path: "books/new",
         element: <NewBook />,
       },
-    {
-      path: "books/edit/:id",
-      element: <Edit />,
-    },
-
+      {
+        path: "books/edit/:bookid",
+        element: <Edit />,
+      },
       {
         path: "books/:id",
         element: <BookDetailPage />,

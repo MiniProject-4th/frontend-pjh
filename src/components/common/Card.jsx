@@ -1,22 +1,26 @@
 // components/common/Card.jsx
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const Card = ({ book }) => (
-  <CardContainer>
-    <ThumbnailWrapper>
-      <div>
-        <img src={book.coverImgUrl} alt={book.title} />
-      </div>
-    </ThumbnailWrapper>
-    <Meta>
-      <Category>{book.categoryName}</Category>
-      <Title>{book.title}</Title>
-      <Author>{book.author}</Author>
-      <Date>{book.createDate.substring(0, 10)}</Date>
-    </Meta>
-  </CardContainer>
-);
+const Card = ({ book }) => {
+  const navigate = useNavigate();
+  return (
+    <CardContainer onClick={() => navigate(`books/${book.id}`)}>
+      <ThumbnailWrapper>
+        <div>
+          <img src={book.coverImgUrl} alt={book.title} />
+        </div>
+      </ThumbnailWrapper>
+      <Meta>
+        <Category>{book.categoryName}</Category>
+        <Title>{book.title}</Title>
+        <Author>{book.author}</Author>
+        <Date>{book.createDate.substring(0, 10)}</Date>
+      </Meta>
+    </CardContainer>
+  );
+};
 
 export default Card;
 

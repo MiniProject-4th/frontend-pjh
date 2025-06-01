@@ -25,7 +25,7 @@ const CategoryList = ({ selectedCategory, setSelectedCategory }) => {
   };
   useEffect(() => {
     // console.log(selectedCategory);
-    fetchCategory();
+    // fetchCategory();
   }, [selectedCategory]);
   return (
     <CategoryWrapper>

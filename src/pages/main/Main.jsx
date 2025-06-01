@@ -93,7 +93,8 @@ export const Main = () => {
       // }
       url += `/api/books`;
       const response = await axios.get(url);
-      setBookList(response.data);
+      console.log(response.data);
+      setBookList(response.data.reverse());
     } catch (err) {
       console.error(
         "책 데이터를 불러오는 중 오류가 발생했습니다. 다시 시도해 주세요.:",
