@@ -101,11 +101,11 @@ const BookDetailPage = () => {
           {book.categoryName}
         </p>
 
-        <h3 style={{ margin: "0 0 30px" }}>{book.title}</h3>
+        <h2 style={{ margin: "0 0 30px" }}>{book.title}</h2>
         
         <div style={{ marginBottom: "20px" }}>
           <h4 style={{ margin: "0 1px 0", fontSize: "12px", color: "#888" }}>저자</h4>
-          <p style={{ margin: "2px 2px 0", fontWeight: "bold", fontSize: "13px" }}>{book.author}</p>
+          <p style={{ margin: "2px 2px 0", fontSize: "14px" }}>{book.author}</p>
         </div>
 
         <p style={{ marginBottom: "20px", color: "#888" , fontSize:"10px"}}>
@@ -115,17 +115,35 @@ const BookDetailPage = () => {
           수정일: {new Date(book.updateDate).toLocaleString()}
         </p>
         
+
+        <div
+        style={{
+          flex: 1,
+          marginTop: "47px",
+          position: "relative",
+          border: "1px solid #eee",
+          padding: "30px",
+          borderRadius: "8px",
+          // boxShadow: "0 0 10px rgba(0,0,0,0.05)",
+          textAlign: "left",
+        }}
+      >
         <div>
-        <h4 style={{ marginTop: "45px", color:"#555", fontSize: "12px"}}>책 줄거리</h4>
+        <p style={{ marginTop: 0}}>📖<br />줄거리</p>
+         
+        
         <p
           style={{
             whiteSpace: "pre-wrap",
             lineHeight: "1.6",
-            fontSize: "13px"
+            fontSize: "13px",
+            color: "#555"
+          
           }}
         >
           {book.content}
         </p>
+        </div>
         </div>
       </div>
     </div>
