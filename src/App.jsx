@@ -14,6 +14,9 @@ import {
   ThemeProvider as MUIThemeProvider,
 } from "@mui/material";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import NewBook from "./pages/newbook/NewBook.jsx";
+
 function App() {
   const theme = useMemo(() => responsiveFontSizes(createTheme(BDS)));
   return (
@@ -25,6 +28,5 @@ function App() {
       </MUIThemeProvider>
     </div>
   );
-}
-
+};
 export default App;

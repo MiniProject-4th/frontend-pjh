@@ -14,7 +14,7 @@ function Roots() {
     >
       <Header />
       <Outlet />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
