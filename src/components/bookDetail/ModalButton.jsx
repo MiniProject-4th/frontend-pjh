@@ -16,26 +16,34 @@ export const ModalButton = ({ type }) => {
   const navigate = useNavigate();
 
   const handleCheck = () => {
+    const password = passwordRef.current.value;
     if (type === "edit") {
-      navigate(`/books/edit/${id}`);
+      //  비밀번호 검증 API 요청하는 부분
+      axios
+        .post(`http://localhost:8080/api/books/${id}/verify-password`, {
+          password: password,
+        })
+        .then(() => {
+          // 비밀번호 맞으면 수정 페이지로 이동
+          setModalOpen(false);
+          navigate(`/books/edit/${id}`);
+        })
+        .catch(() => {
+          // 비밀번호 틀리면 스낵바 띄움
+          setSnackbarOpen(true);
+        });
     } else {
-      const password = passwordRef.current.value;
-
+      // 삭제 요청
       axios
         .delete(`http://localhost:8080/api/books/${id}`, {
           data: { password },
         })
-        .then((response) => {
-          console.log("삭제 성공:", response.data);
-          setModalOpen(false); // 삭제 성공 시 모달 닫기
+        .then(() => {
+          setModalOpen(false);
           navigate("/");
         })
         .catch((error) => {
-          if (error.response && error.response.status === 500) {
-            setSnackbarOpen(true); // 비밀번호 오류로 인한 실패만 스낵바
-          } else {
-            console.error("삭제 실패:", error);
-          }
+          setSnackbarOpen(true);
         });
     }
   };
