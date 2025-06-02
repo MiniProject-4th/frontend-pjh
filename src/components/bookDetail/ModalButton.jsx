@@ -17,8 +17,8 @@ export const ModalButton = ({ type }) => {
 
   const handleCheck = () => {
     const password = passwordRef.current.value;
+
     if (type === "edit") {
-      //  비밀번호 검증 API 요청하는 부분
       axios
         .post(`http://localhost:8080/api/books/${id}/verify-password`, {
           password: password,
@@ -33,26 +33,27 @@ export const ModalButton = ({ type }) => {
           setSnackbarOpen(true);
         });
     } else {
-      // 삭제 요청
       axios
         .delete(`http://localhost:8080/api/books/${id}`, {
           data: { password },
         })
-        .then(() => {
-          setModalOpen(false);
+        .then((response) => {
+          console.log("삭제 성공:", response.data);
+          setModalOpen(false); // 삭제 성공 시 모달 닫기
           navigate("/");
         })
         .catch((error) => {
-          setSnackbarOpen(true);
+          if (error.response && error.response.status === 500) {
+            setSnackbarOpen(true); // 비밀번호 오류로 인한 실패만 스낵바
+          } else {
+            console.error("삭제 실패:", error);
+          }
         });
     }
   };
 
   const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
+    if (reason === "clickaway") return;
     setSnackbarOpen(false);
   };
 
@@ -91,7 +92,9 @@ export const ModalButton = ({ type }) => {
             label="Password"
             variant="outlined"
             color="black"
+            type="password"
             inputRef={passwordRef}
+            fullWidth
           />
           <br />
           <Button
