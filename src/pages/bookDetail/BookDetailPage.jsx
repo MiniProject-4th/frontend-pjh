@@ -25,7 +25,6 @@ const BookDetailPage = () => {
       style={{
         marginTop: "100px", // 헤더 아래로 내림
         marginLeft: "20px", // 왼쪽 여백
-        cursor: "pointer",
         fontWeight: "bold",
       }}
     >
@@ -46,7 +45,12 @@ const BookDetailPage = () => {
               e.target.onerror = null;
               e.target.src = "/no-image.png";
             }}
-            style={{ width: "100%", height: "480px", border: "1px solid #ccc" }}
+            style={{
+              width: "100%",
+              height: "480px",
+              border: "1px solid #ccc",
+              objectFit: "cover",
+            }}
           />
         </div>
 
