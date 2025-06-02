@@ -61,7 +61,7 @@ function Edit() {
 
   const generateCover = () => {
     setLoading(true);
-    axios.post("http://localhost:8080/api/books/generate-cover", {
+    axios.post("http://localhost:8080/api/books/generate-cover-v2", {
       title: form.title,
       content: form.content,
       apiKey: form.apiKey,
