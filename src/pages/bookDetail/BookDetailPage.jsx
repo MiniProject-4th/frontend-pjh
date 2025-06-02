@@ -37,7 +37,7 @@ const BookDetailPage = () => {
         }}
       >
         {/* 왼쪽: 표지 */}
-        <div style={{ width: "320px" }}>
+        <div style={{ width: "380px" }}>
           <img
             src={book.coverImgUrl}
             alt="표지"
@@ -47,7 +47,7 @@ const BookDetailPage = () => {
             }}
             style={{
               width: "100%",
-              height: "480px",
+              height: "450px",
               border: "1px solid #ccc",
               objectFit: "cover",
             }}
@@ -82,22 +82,24 @@ const BookDetailPage = () => {
           </div>
 
           {/* 정보 출력 */}
-          <p style={{ color: "#888", marginBottom: "8px", fontSize: "12px" }}>
+          <p style={{ color: "#888", marginBottom: "5px", fontSize: "15px" }}>
             {book.categoryName}
           </p>
 
-          <h2 style={{ margin: "0 0 30px" }}>{book.title}</h2>
+          <h2 style={{ margin: "0 0 30px", fontSize: "20px" }}>{book.title}</h2>
 
-          <div style={{ marginBottom: "20px" }}>
-            <h4 style={{ margin: "0 1px 0", fontSize: "12px", color: "#888" }}>
+          <div style={{ marginBottom: "10px" }}>
+            <h4 style={{ margin: "0 1px 0", fontSize: "15px", color: "#888" }}>
               저자
             </h4>
-            <p style={{ margin: "2px 2px 0", fontSize: "14px" }}>
+            <p
+              style={{ margin: "2px 2px 0", fontSize: "18px", fontWeight: 700 }}
+            >
               {book.author}
             </p>
           </div>
 
-          <p style={{ marginBottom: "20px", color: "#888", fontSize: "10px" }}>
+          <p style={{ marginBottom: "10px", color: "#888", fontSize: "12px" }}>
             등록일: {new Date(book.createDate).toLocaleDateString()}
             <br />
             {/* <p style={{ marginBottom: "20px", color: "#555" }}> */}
@@ -107,7 +109,7 @@ const BookDetailPage = () => {
           <div
             style={{
               flex: 1,
-              marginTop: "47px",
+              marginTop: "30px",
               position: "relative",
               border: "1px solid #eee",
               padding: "30px",
@@ -117,10 +119,15 @@ const BookDetailPage = () => {
             }}
           >
             <div>
-              <p style={{ marginTop: 0 }}>
-                📖
+              <p
+                style={{
+                  marginTop: "-30px",
+                  marginLeft: "-20px",
+                  fontSize: "15px",
+                }}
+              >
                 <br />
-                줄거리
+                📖줄거리
               </p>
 
               <p
@@ -128,7 +135,9 @@ const BookDetailPage = () => {
                   whiteSpace: "pre-wrap",
                   lineHeight: "1.6",
                   fontSize: "13px",
+                  marginLeft: "-20px",
                   color: "#555",
+                  fontWeight: 500,
                 }}
               >
                 {book.content}
