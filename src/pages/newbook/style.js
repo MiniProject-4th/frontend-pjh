@@ -1,14 +1,13 @@
 // src/pages/newbook/style.js
 import styled from "styled-components";
-import { Box, Button} from "@mui/material";
-
+import { Box, Button } from "@mui/material";
 
 export const StyledContainer = styled.div`
   display: flex;
   gap: 4rem;
   justify-content: space-between;
   padding: 4rem;
-  padding-top: 100px;  
+  padding-top: 100px;
   background-color: white;
 `;
 
@@ -29,8 +28,8 @@ export const FormRight = styled.div`
 
 export const CoverBox = styled.div`
   margin-top: 1rem;
-  width: 400px;
-  height: 500px;
+  width: 580px;
+  height: 780px;
   background-color: #d9d9d9;
   display: flex;
   align-items: center;
@@ -69,7 +68,6 @@ export const LabelText = styled.span`
 `;
 // style.js
 
-
 export const CustomBlackButton = styled(Button)`
   background-color: #101010;
   color: #ffffff;
@@ -84,7 +82,6 @@ export const CustomBlackButton = styled(Button)`
     box-shadow: none;
   }
 `;
-
 
 export const CustomBlueButton = styled(Button)`
   background-color: #1976d2; /* 🔵 파란색 */
