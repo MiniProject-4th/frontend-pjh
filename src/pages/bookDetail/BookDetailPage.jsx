@@ -29,20 +29,6 @@ const BookDetailPage = () => {
         fontWeight: "bold",
       }}
     >
-      {/* 홈 버튼 */}
-      <button
-        onClick={() => navigate("/")}
-        style={{
-          position: "absolute",
-          top: "20px",
-          left: "20px",
-          cursor: "pointer",
-          fontWeight: "bold",
-        }}
-      >
-        홈
-      </button>
-
       <div
         style={{
           display: "flex",
