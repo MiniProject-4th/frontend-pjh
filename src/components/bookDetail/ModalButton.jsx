@@ -16,11 +16,23 @@ export const ModalButton = ({ type }) => {
   const navigate = useNavigate();
 
   const handleCheck = () => {
-    if (type === "edit") {
-      navigate(`/books/edit/${id}`);
-    } else {
-      const password = passwordRef.current.value;
+    const password = passwordRef.current.value;
 
+    if (type === "edit") {
+      axios
+        .post(`http://localhost:8080/api/books/${id}/verify-password`, {
+          password: password,
+        })
+        .then(() => {
+          // 비밀번호 맞으면 수정 페이지로 이동
+          setModalOpen(false);
+          navigate(`/books/edit/${id}`);
+        })
+        .catch(() => {
+          // 비밀번호 틀리면 스낵바 띄움
+          setSnackbarOpen(true);
+        });
+    } else {
       axios
         .delete(`http://localhost:8080/api/books/${id}`, {
           data: { password },
@@ -41,10 +53,7 @@ export const ModalButton = ({ type }) => {
   };
 
   const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
+    if (reason === "clickaway") return;
     setSnackbarOpen(false);
   };
 
@@ -83,7 +92,9 @@ export const ModalButton = ({ type }) => {
             label="Password"
             variant="outlined"
             color="black"
+            type="password"
             inputRef={passwordRef}
+            fullWidth
           />
           <br />
           <Button
